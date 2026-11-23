@@ -1,0 +1,11 @@
+node_modules/
+dist/
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.pdb
+web/node_modules/.tmp/
+Trivia.Api/uploads/*
+!Trivia.Api/uploads/.gitkeep
