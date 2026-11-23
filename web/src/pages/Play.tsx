@@ -40,7 +40,7 @@ export default function Play({ code }: { code: string }) {
   switch (state.phase) {
     case 'lobby':
       return (
-        <div className="center-page purple">
+        <div className="center-page purple player-lobby">
           <h2>You're in, {me.name}!</h2>
           <p>See your name on the screen. Waiting for the host to start…</p>
           <div className="chips">{state.players.map((p) => <span key={p.id} className="chip">{p.name}</span>)}</div>

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { go } from '../router'
 import { Confetti, Leaderboard, Media, OPTION_COLORS, Podium, Shape } from '../components'
 import { useCountdown, useGame } from '../useGame'
@@ -59,10 +60,37 @@ export default function Host({ code }: { code: string }) {
 }
 
 function HostLobby({ state, onStart }: { state: GameState; onStart: () => void }) {
-  const joinUrl = `${window.location.origin}/#/join/${state.code}`
+  const [copyStatus, setCopyStatus] = useState<'copied' | 'failed' | null>(null)
+  const joinUrl = new URL(window.location.pathname, window.location.origin)
+  joinUrl.hash = `/join/${state.code}`
+  const inviteUrl = joinUrl.toString()
+
+  useEffect(() => {
+    if (!copyStatus) return
+    const timeout = window.setTimeout(() => setCopyStatus(null), 2500)
+    return () => window.clearTimeout(timeout)
+  }, [copyStatus])
+
+  const copyInvite = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteUrl)
+      setCopyStatus('copied')
+    } catch {
+      setCopyStatus('failed')
+    }
+  }
+
   return (
     <div className="stage">
-      <p className="muted">Join at <b>{joinUrl}</b> or open the app and enter the PIN</p>
+      <div className="invite-tools">
+        <p>Join at <a className="invite-url" href={inviteUrl}>{inviteUrl}</a> or open the app and enter the PIN</p>
+        <button className="btn dark" onClick={() => void copyInvite()}>Copy invite link</button>
+        {copyStatus && (
+          <p className={`copy-feedback ${copyStatus}`} role="status" aria-live="polite">
+            {copyStatus === 'copied' ? 'Invite link copied!' : 'Could not copy. Select and copy the invite link above.'}
+          </p>
+        )}
+      </div>
       <div className="pin">{state.code}</div>
       <h2 className="stage-title">{state.title}</h2>
       <button className="btn green big" disabled={state.players.length === 0} onClick={onStart}>
