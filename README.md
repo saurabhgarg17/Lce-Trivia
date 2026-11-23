@@ -15,6 +15,10 @@ cd web; npm install; npm run dev     # http://localhost:5173 (proxies /api, /hub
 
 Open the app, create a trivia (questions with image / GIF / YouTube media, uploads supported), click **Host**, and have friends open the site and enter the 6-digit PIN.
 
+## GitHub Pages
+
+The frontend is deployed automatically from `main` to https://saurabhgarg17.github.io/Lce-Trivia/ by GitHub Actions. GitHub Pages only hosts the static frontend; hosting the .NET API and MongoDB separately is required for trivia, uploads, and multiplayer features. Set the `VITE_API_URL` Actions variable to the public API origin before building to connect the deployed frontend.
+
 ## API for clients
 
 REST (`/api`): `GET/POST /quizzes`, `GET/PUT/DELETE /quizzes/{id}`, `POST /games {quizId}` → `{code, hostToken}`, `GET /games/{code}`, `POST /media` (multipart `file`).
