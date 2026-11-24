@@ -53,5 +53,21 @@ public static class SampleData
                 Q("Which language runs in a web browser?", ["JavaScript", "C#", "Go", "Rust"], 0, time: 15),
             ]
         },
+        new Quiz
+        {
+            Title = "Sample: Artificial Intelligence",
+            Description = "A quick introduction to AI, machine learning, and generative AI.",
+            Questions =
+            [
+                Q("What does AI stand for?", ["Automated Internet", "Artificial Intelligence", "Advanced Integration", "Algorithmic Input"], 1, time: 15),
+                Q("Which best describes machine learning?", ["Computers learn patterns from data", "Computers repair their own hardware", "People manually write every possible answer", "A computer connects to more websites"], 0),
+                Q("What is training data used for?", ["To teach a model patterns from examples", "To measure a computer's screen size", "To encrypt a model's source code", "To connect a model to the internet"], 0),
+                Q("What does LLM stand for?", ["Large Language Model", "Linked Learning Machine", "Logical Language Method", "Long-term Memory"], 0, time: 15),
+                Q("Which task is an example of computer vision?", ["Identifying objects in a photo", "Translating spoken words into text", "Writing a music playlist", "Sorting files by name"], 0),
+                Q("What can generative AI do?", ["Create new text, images, or other content", "Guarantee that every answer is correct", "Replace all computer programs", "Work only when a person types code"], 0),
+                Q("What is an AI hallucination?", ["An inaccurate or fabricated output presented as fact", "A model shutting down after a timer", "A computer displaying a blurry image", "A method for backing up training data"], 0),
+                Q("What is a sensible way to use AI-generated information?", ["Verify important claims with reliable sources", "Assume it is always up to date", "Share private information to improve every answer", "Use it without checking the results"], 0),
+            ]
+        },
     ];
 }
